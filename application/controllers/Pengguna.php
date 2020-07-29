@@ -16,7 +16,7 @@ class Pengguna extends CI_Controller
 		parent::__construct();
 
 		if (!$this->session->has_userdata('pengguna')) {
-			// redirect(base_url('site/sign_in') ,'refresh');
+			redirect(base_url('site/sign_in') ,'refresh');
 		}
 	}
 
