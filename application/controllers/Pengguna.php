@@ -47,8 +47,17 @@ class Pengguna extends CI_Controller
 
 				if ($masuk)
 				{
-					$this->session->set_userdata('pengguna', $masuk['id']);
-					redirect(base_url('pengguna'), 'refresh');
+					if ($masuk['status'] == 'aktif')
+					{
+						$this->session->set_userdata('pengguna', $masuk['id']);
+						redirect(base_url('pengguna'), 'refresh');
+					}
+					else
+					{
+						$status = ($masuk['status'] == 'non-aktif')?'non-aktifkan':'blokir';
+						$this->session->set_userdata('masuk', 'Maaf akun anda telah di'.$status.' silahkan hubungi admin untuk keterangan lebih lanjut');
+						redirect(base_url('pengguna'), 'refresh');
+					}
 				}
 				else
 				{
