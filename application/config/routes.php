@@ -52,3 +52,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pengguna';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['site/sign_in'] = 'pengguna/masuk';
