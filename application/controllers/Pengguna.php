@@ -16,10 +16,15 @@ class Pengguna extends CI_Controller
 		parent::__construct();
 
 		if (!$this->session->has_userdata('pengguna')) {
-			redirect(base_url('site/sign_in') ,'refresh');
+			if (!in_array($this->router->fetch_method(), ['daftar', 'masuk', 'keluar'])) {
+				redirect(base_url('site/sign_in') ,'refresh');
+			}
 		}
 	}
 
+	/**
+	 * User dashboard
+	 */
 	public function index()
 	{
 		$data['page_title'] = 'Dashboard';
