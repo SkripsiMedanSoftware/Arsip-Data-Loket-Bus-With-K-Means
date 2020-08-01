@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2020 at 04:58 AM
+-- Generation Time: Aug 01, 2020 at 10:21 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -93,7 +93,8 @@ CREATE TABLE `data_tujuan` (
   `id` int(5) NOT NULL,
   `nama_tujuan` varchar(41) DEFAULT NULL,
   `loket` int(5) NOT NULL,
-  `bus` int(5) NOT NULL
+  `bus` int(5) NOT NULL,
+  `bus_loket_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -137,6 +138,7 @@ ALTER TABLE `data_bus`
 -- Indexes for table `data_bus_loket`
 --
 ALTER TABLE `data_bus_loket`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `loket` (`loket`,`bus`),
   ADD KEY `bus` (`bus`);
 
@@ -166,7 +168,8 @@ ALTER TABLE `data_penumpang`
 ALTER TABLE `data_tujuan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `loket` (`loket`,`bus`),
-  ADD KEY `bus` (`bus`);
+  ADD KEY `bus` (`bus`),
+  ADD KEY `bus_loket_id` (`bus_loket_id`);
 
 --
 -- Indexes for table `pengguna`
@@ -182,6 +185,12 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `data_bus`
 --
 ALTER TABLE `data_bus`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `data_bus_loket`
+--
+ALTER TABLE `data_bus_loket`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
@@ -242,7 +251,8 @@ ALTER TABLE `data_penumpang`
 --
 ALTER TABLE `data_tujuan`
   ADD CONSTRAINT `data_tujuan_ibfk_1` FOREIGN KEY (`loket`) REFERENCES `data_loket` (`id`),
-  ADD CONSTRAINT `data_tujuan_ibfk_2` FOREIGN KEY (`bus`) REFERENCES `data_bus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `data_tujuan_ibfk_2` FOREIGN KEY (`bus`) REFERENCES `data_bus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `data_tujuan_ibfk_3` FOREIGN KEY (`bus_loket_id`) REFERENCES `data_bus_loket` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
