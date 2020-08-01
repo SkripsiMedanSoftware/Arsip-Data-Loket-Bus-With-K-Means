@@ -140,4 +140,4 @@ $autoload['language'] = array('calendar');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('pengguna_model', 'data_bus_model', 'data_loket_model', 'data_paket_model', 'data_tujuan_model');
+$autoload['model'] = array('pengguna_model', 'data_bus_model', 'data_loket_model', 'data_bus_loket_model', 'data_penumpang_model', 'data_paket_model', 'data_tujuan_model');

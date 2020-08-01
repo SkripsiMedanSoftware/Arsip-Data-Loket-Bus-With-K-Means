@@ -15,7 +15,13 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte-2.4.8/')?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/jquery/dist/jquery.min.js"></script>
 </head>
+<style type="text/css">
+	.help-block.error {
+		color: red;
+	}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 	<header class="main-header">
@@ -69,19 +75,24 @@
 			</div>
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">MAIN NAVIGATION</li>
-				<li class="active treeview">
+				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
+				<li class="treeview <?php echo $this->router->fetch_class() == 'data_variable'?'active':'' ?>">
 					<a href="#">
-						<i class="fa fa-dashboard"></i> <span>Dashboard</span>
+						<i class="fa fa-cubes"></i> <span>Refrensi</span>
 						<span class="pull-right-container">
 							<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
 					<ul class="treeview-menu">
-						<li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-						<li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+						<li class="<?php echo $this->router->fetch_method() == 'bus'?'active':'' ?>"><a href="<?php echo base_url('data_variable/bus') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'bus'?'':'-o' ?>"></i> Bus</a></li>
+						<li class="<?php echo $this->router->fetch_method() == 'loket'?'active':'' ?>"><a href="<?php echo base_url('data_variable/loket') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'loket'?'':'-o' ?>"></i> Loket</a></li>
+						<li class="<?php echo $this->router->fetch_method() == 'paket'?'active':'' ?>"><a href="<?php echo base_url('data_variable/paket') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'paket'?'':'-o' ?>"></i> Paket</a></li>
+						<li class="<?php echo $this->router->fetch_method() == 'tujuan'?'active':'' ?>"><a href="<?php echo base_url('data_variable/tujuan') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'tujuan'?'':'-o' ?>"></i> Tujuan</a></li>
+						<li class="<?php echo $this->router->fetch_method() == 'penumpang'?'active':'' ?>"><a href="<?php echo base_url('data_variable/penumpang') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'penumpang'?'':'-o' ?>"></i> Penumpang</a></li>
 					</ul>
 				</li>
-				<li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+				<li><a href="<?php echo base_url('data_variable/kmeans') ?>"><i class="fa fa-book"></i> <span>Iterasi K-means</span></a></li>
+				<!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
 				<li class="header">LABELS</li>
 			</ul>
 		</section>
@@ -107,7 +118,6 @@
 	</footer>
 </div>
 
-<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script>
 	$.widget.bridge('uibutton', $.ui.button);
@@ -126,7 +136,13 @@
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/fastclick/lib/fastclick.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>dist/js/pages/dashboard.js"></script>
-<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>dist/js/demo.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#datepicker').datepicker({
+		autoclose: true,
+		format: 'dd/mm/yyyy'
+	});
+});
+</script>
 </body>
 </html>

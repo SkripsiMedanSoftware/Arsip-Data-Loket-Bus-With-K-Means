@@ -28,6 +28,12 @@ class Pengguna extends CI_Controller
 	public function index()
 	{
 		$data['page_title'] = 'Dashboard';
+		$data['count_all'] = array(
+			'bus' => $this->data_bus_model->count_all(),
+			'loket' => $this->data_loket_model->count_all(),
+			'paket' => $this->data_paket_model->count_all(),
+			'tujuan' => $this->data_tujuan_model->count_all()
+		);
 		$this->template->pengguna('home', $data);
 	}
 
@@ -83,7 +89,7 @@ class Pengguna extends CI_Controller
 	 */
 	public function profil($id = NULL)
 	{
-		$this->template->pengguna('pengguna/profil');
+		$this->template->pengguna('pengguna/profile');
 	}
 
 	/**

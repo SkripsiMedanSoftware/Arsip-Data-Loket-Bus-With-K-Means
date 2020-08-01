@@ -17,6 +17,6 @@
 #	CODEIGNITER ENVIRONMENT
 #==============================================================
 	<IfModule mod_env.c>
-		SetEnv CI_ENV production
+		SetEnv CI_ENV development
 	</IfModule>
 #--------------------------------------------------------------#
