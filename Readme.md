@@ -2,4 +2,4 @@
 
 ## Database Relationship
 
-![Database Design](database.PNG)
+![Database Image](database.PNG)
