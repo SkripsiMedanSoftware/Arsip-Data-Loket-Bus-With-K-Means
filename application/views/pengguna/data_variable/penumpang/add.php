@@ -13,8 +13,10 @@
 				<div class="form-group">
 					<label>Tujuan</label>
 					<select name="tujuan" class="form-control">
-						<?php foreach ($this->data_tujuan_model->list() as $value) : ?>
-							<option value="<?php echo $value['id']; ?>"><?php echo $value['nama_tujuan']; ?></option>
+						<?php foreach ($this->data_tujuan_model->list() as $value) : 
+							$loket = $this->data_loket_model->view($value['loket']);
+						?>
+							<option value="<?php echo $value['id']; ?>"><?php echo $loket['nama_loket'].' - '.$value['nama_tujuan']; ?></option>
 						<?php endforeach; ?>
 					</select>
 					<?php echo form_error('tujuan', '<span class="help-block error">', '</span>'); ?>
