@@ -26,7 +26,7 @@ class Data_loket_model extends MY_Model {
 		$tujuan_loket = $this->data_tujuan_model->get_where(array('loket' => $id_loket));
 
 		$list_tujuan = array_map(function($data){
-			return $data['loket'];
+			return $data['id'];
 		}, $tujuan_loket);
 
 		if (!empty($list_tujuan)) {
@@ -41,7 +41,7 @@ class Data_loket_model extends MY_Model {
 		$tujuan_loket = $this->data_tujuan_model->get_where(array('loket' => $id_loket));
 
 		$list_tujuan = array_map(function($data){
-			return $data['loket'];
+			return $data['id'];
 		}, $tujuan_loket);
 
 		if (!empty($list_tujuan)) {
