@@ -148,6 +148,8 @@
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url('assets/adminlte-2.4.8/')?>bower_components/fastclick/lib/fastclick.js"></script>
@@ -157,6 +159,13 @@ $(document).ready(function() {
 	$('#datepicker').datepicker({
 		autoclose: true,
 		format: 'dd/mm/yyyy'
+	});
+	$('.datatable').DataTable({
+		dom:"<'row'<'col-sm-4 dt_length'l>>"+
+		"<'row'<'col-sm-8'B> <'col-sm-4'f>>"+
+		"<'row'<'col-sm-12'tr>>"+
+		"<'row'<'col-sm-6 col-md-6 col-lg-4'i><'col-sm-6 col-md-6 col-lg-8'>>"+
+		"<'row'<'col-sm-12 col-lg-7'<'pull-right'p>>>"
 	});
 });
 </script>

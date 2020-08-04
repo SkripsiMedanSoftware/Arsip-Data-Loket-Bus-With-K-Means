@@ -88,7 +88,7 @@
 						foreach ($clusters as $cluster_key => $data) {
 						    echo '<h4>Kelompok '.($cluster_key+=1).'</h4>';
 						    ?>
-						    <table class="table table-responsive table-bordered">
+						    <table class="table table-responsive table-bordered table-hover">
 						    	<thead>
 						    		<th>No</th>
 						    		<th>Nama Loket</th>

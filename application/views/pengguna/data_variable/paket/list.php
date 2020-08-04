@@ -27,7 +27,6 @@
 				if (!empty($paket)) {
 					$no = 1;
 					foreach ($paket as $key => $value) {
-					// if (!empty($this->data_tujuan_model->view($value['tujuan'])['nama_tujuan'])) :
 					$tujuan = $this->data_tujuan_model->view($value['tujuan'])['nama_tujuan'];
 				?>
 				<tr>

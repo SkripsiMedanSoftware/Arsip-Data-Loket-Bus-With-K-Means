@@ -101,7 +101,8 @@ class Pengguna extends CI_Controller
 	 */
 	public function profil($id = NULL)
 	{
-		$this->template->pengguna('pengguna/profile');
+		$data['pengguna'] = $this->pengguna_model->view((!empty($id))?$id:aktif_sesi()['id']);
+		$this->template->pengguna('pengguna/profile', $data);
 	}
 
 	/**
