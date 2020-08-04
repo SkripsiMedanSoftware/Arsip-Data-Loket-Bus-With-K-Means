@@ -572,6 +572,72 @@ class Data_variable extends CI_Controller
 		}
 	}
 
+	public function penumpang_option($id = NULL, $option = 'delete')
+	{
+		$id = $this->data_penumpang_model->view($id);
+
+		if (!empty($id))
+		{
+			switch ($option) {
+				case 'update':
+					if ($this->input->method(TRUE) == 'POST')
+					{
+						$this->form_validation->set_rules('nama_penumpang', 'Nama Penumpang', 'trim|required');
+						$this->form_validation->set_rules('tujuan', 'Tujuan', 'trim|required');
+
+						if ($this->form_validation->run() == TRUE)
+						{
+							$tanggal = explode('/', $this->input->post('tanggal'));
+
+							$this->data_penumpang_model->update(array(
+								'nama_tujuan' => $this->input->post('nama_tujuan'),
+								'loket' => $this->input->post('loket'),
+								'bus' => $this->input->post('bus'),
+								'bus_loket_id' => $this->input->post('bus_loket_id')
+							), array('id' => $id['id']));
+
+							$this->session->set_flashdata('flash_message', array('status' => 'success', 'message' => 'Data penumpang telah diperbaharui'));
+							redirect(base_url('data_variable/penumpang') ,'refresh');
+						}
+						else
+						{
+							$data['page_title'] = 'Edit Data Penumpang';
+							$data['penumpang'] = $id;
+							$this->template->pengguna('data_variable/penumpang/edit', $data);
+						}
+					}
+					else
+					{
+						$data['page_title'] = 'Edit Data Penumpang';
+						$data['penumpang'] = $id;
+						$this->template->pengguna('data_variable/penumpang/edit', $data);
+					}
+				break;
+
+				case 'delete':
+					if ($this->data_penumpang_model->delete(array('id' => $id['id'])))
+					{
+						$this->session->set_flashdata('flash_message', array('status' => 'success', 'message' => 'Data penumpang telah dihapus'));
+						redirect(base_url('data_variable/penumpang') ,'refresh');
+					}
+					else
+					{
+						$this->session->set_flashdata('flash_message', array('status' => 'danger', 'message' => 'Gagal menghapus data penumpang'));
+						redirect(base_url('data_variable/penumpang') ,'refresh');
+					}
+				break;
+
+				default:
+					show_404();
+				break;
+			}
+		}
+		else
+		{
+
+		}
+	}
+
 	public function bus_loket($id = NULL, $option = NULL)
 	{
 		if ($option == 'add')
