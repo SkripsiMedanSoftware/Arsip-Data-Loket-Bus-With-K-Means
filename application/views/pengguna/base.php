@@ -76,6 +76,7 @@
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">MAIN NAVIGATION</li>
 				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
+				<?php if (aktif_sesi()['role'] == 'admin'):  ?>
 				<li class="treeview <?php echo $this->router->fetch_class() == 'data_variable'?'active':'' ?>">
 					<a href="#">
 						<i class="fa fa-cubes"></i> <span>Refrensi</span>
@@ -91,9 +92,23 @@
 						<li class="<?php echo $this->router->fetch_method() == 'penumpang'?'active':'' ?>"><a href="<?php echo base_url('data_variable/penumpang') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'penumpang'?'':'-o' ?>"></i> Penumpang</a></li>
 					</ul>
 				</li>
-				<li><a href="<?php echo base_url('data_variable/kmeans') ?>"><i class="fa fa-book"></i> <span>Iterasi K-means</span></a></li>
-				<!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
-				<li class="header">LABELS</li>
+				<?php endif ?>
+				<?php if (aktif_sesi()['role'] == 'pimpinan'):  ?>
+				<li class="treeview <?php echo $this->router->fetch_class() == 'laporan'?'active':'' ?>">
+					<a href="#">
+						<i class="fa fa-file-text"></i> <span>Laporan</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li class="<?php echo $this->router->fetch_method() == 'bus'?'active':'' ?>"><a href="<?php echo base_url('laporan/bus') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'bus'?'':'-o' ?>"></i> Bus</a></li>
+					</ul>
+				</li>
+				<?php endif ?>
+				<?php if (aktif_sesi()['role'] == 'kabag'):  ?>
+					<li><a href="<?php echo base_url('data_variable/kmeans') ?>"><i class="fa fa-book"></i> <span>Iterasi K-means</span></a></li>
+				<?php endif ?>
 			</ul>
 		</section>
 	</aside>
