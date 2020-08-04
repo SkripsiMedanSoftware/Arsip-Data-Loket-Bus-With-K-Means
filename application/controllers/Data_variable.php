@@ -14,6 +14,12 @@ class Data_variable extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if (!$this->session->has_userdata('pengguna')) {
+			if (!in_array($this->router->fetch_method(), ['daftar', 'masuk', 'keluar'])) {
+				redirect(base_url('site/sign_in') ,'refresh');
+			}
+		}
 	}
 
 	/**
