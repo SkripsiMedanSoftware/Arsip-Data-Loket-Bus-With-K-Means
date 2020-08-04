@@ -92,6 +92,7 @@
 						<li class="<?php echo $this->router->fetch_method() == 'penumpang'?'active':'' ?>"><a href="<?php echo base_url('data_variable/penumpang') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'penumpang'?'':'-o' ?>"></i> Penumpang</a></li>
 					</ul>
 				</li>
+				<li><a href="<?php echo base_url('pengguna/pengguna') ?>"><i class="fa fa-users"></i> <span>Pengguna</span></a></li>
 				<?php endif ?>
 				<?php if (aktif_sesi()['role'] == 'pimpinan'):  ?>
 				<li class="treeview <?php echo $this->router->fetch_class() == 'laporan'?'active':'' ?>">

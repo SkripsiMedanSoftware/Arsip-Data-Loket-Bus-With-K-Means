@@ -32,9 +32,21 @@ class Pengguna extends CI_Controller
 			'bus' => $this->data_bus_model->count_all(),
 			'loket' => $this->data_loket_model->count_all(),
 			'paket' => $this->data_paket_model->count_all(),
-			'tujuan' => $this->data_tujuan_model->count_all()
+			'tujuan' => $this->data_tujuan_model->count_all(),
+			'penumpang' => $this->data_penumpang_model->count_all(),
+			'pengguna' => $this->pengguna_model->count_all()
 		);
 		$this->template->pengguna('home', $data);
+	}
+
+	/**
+	 * Pengguna
+	 */
+	public function pengguna()
+	{
+		$data['page_title'] = 'Dashboard';
+		$data['pengguna'] = $this->pengguna_model->list();
+		$this->template->pengguna('pengguna/list', $data);
 	}
 
 	/**
