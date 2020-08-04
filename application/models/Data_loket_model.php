@@ -37,6 +37,12 @@ class Data_loket_model extends MY_Model {
 		}
 	}
 
+	/**
+	 * Jumlah paket total
+	 * 
+	 * @param  integer $id_loket
+	 * @return integer
+	 */
 	public function jumlah_paket_total($id_loket = NULL) {
 		$tujuan_loket = $this->data_tujuan_model->get_where(array('loket' => $id_loket));
 
