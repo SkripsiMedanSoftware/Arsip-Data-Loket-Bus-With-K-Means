@@ -21,7 +21,7 @@ class Laporan extends CI_Controller
 			}
 		}
 
-		$this->load->library('fpdf182/fpdf.php');
+		$this->load->library('fpdf182/fpdf');
 	}
 
 	public function bus()
@@ -59,6 +59,16 @@ class Laporan extends CI_Controller
 		$this->fpdf->SetTitle('Laporan Data Bus');
 		$this->fpdf->SetFont('Times', '', 12);
 		$this->fpdf->AddPage();
+
+		$this->fpdf->Image('https://www.graphicsprings.com/filestorage/stencils/f794ad52bccba5259868672d8db49de5.png', 120, 1, 120);
+		// Arial bold 15
+		// $this->fpdf->SetFont('Arial','B',15);
+		// Move to the right
+		$this->fpdf->Cell(80);
+		// Title
+		// $this->fpdf->Cell(30,10,'Title',1,0,'C');
+		// Line break
+		$this->fpdf->Ln(48);
 
 		foreach ($headers as $value) {
 		    $this->fpdf->Cell($value['width'], 6, $value['text'], 1, 0, 'C');

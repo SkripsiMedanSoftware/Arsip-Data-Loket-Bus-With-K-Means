@@ -20,6 +20,16 @@ class Data_variable extends CI_Controller
 				redirect(base_url('site/sign_in') ,'refresh');
 			}
 		}
+
+		if (!in_array(aktif_sesi()['role'], ['admin', 'kabag'])) {
+			show_error('Anda tidak punya hak untuk mengakses halaman ini', 403, 'Akses Ditolak');
+		} else {
+			if (aktif_sesi()['role'] == 'kabag') {
+				if ($this->router->fetch_method() !== 'kmeans') {
+					show_error('Anda tidak punya hak untuk mengakses halaman ini', 403, 'Akses Ditolak');
+				}
+			}
+		}
 	}
 
 	/**
@@ -640,7 +650,7 @@ class Data_variable extends CI_Controller
 		}
 		else
 		{
-
+			show_404();
 		}
 	}
 
