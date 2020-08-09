@@ -606,10 +606,9 @@ class Data_variable extends CI_Controller
 							$tanggal = explode('/', $this->input->post('tanggal'));
 
 							$this->data_penumpang_model->update(array(
-								'nama_tujuan' => $this->input->post('nama_tujuan'),
-								'loket' => $this->input->post('loket'),
-								'bus' => $this->input->post('bus'),
-								'bus_loket_id' => $this->input->post('bus_loket_id')
+								'nama_penumpang' => $this->input->post('nama_penumpang'),
+								'tujuan' => $this->input->post('tujuan'),
+								'tanggal' => $tanggal[2].'-'.$tanggal[1].'-'.$tanggal[0]
 							), array('id' => $id['id']));
 
 							$this->session->set_flashdata('flash_message', array('status' => 'success', 'message' => 'Data penumpang telah diperbaharui'));
