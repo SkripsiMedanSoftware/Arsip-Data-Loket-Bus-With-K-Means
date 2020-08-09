@@ -103,6 +103,7 @@
 						</span>
 					</a>
 					<ul class="treeview-menu">
+						<li class="<?php echo $this->router->fetch_method() == 'loket'?'active':'' ?>"><a href="<?php echo base_url('laporan/loket') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'loket'?'':'-o' ?>"></i> Loket</a></li>
 						<li class="<?php echo $this->router->fetch_method() == 'bus'?'active':'' ?>"><a href="<?php echo base_url('laporan/bus') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'bus'?'':'-o' ?>"></i> Bus</a></li>
 						<li class="<?php echo $this->router->fetch_method() == 'paket'?'active':'' ?>"><a href="<?php echo base_url('laporan/paket') ?>"><i class="fa fa-circle<?php echo $this->router->fetch_method() == 'paket'?'':'-o' ?>"></i> Paket</a></li>
 					</ul>

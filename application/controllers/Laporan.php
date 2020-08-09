@@ -31,6 +31,23 @@ class Laporan extends CI_Controller
 		$this->template->pengguna('laporan/bus', $data);
 	}
 
+	public function header()
+	{
+		$this->fpdf->Cell(80);
+		$this->fpdf->SetFontSize(34);
+
+		$this->fpdf->Cell(30, 10, 'Sistem Informasi Pengarsipan', 0, 1, 'C');
+		$this->fpdf->SetFontSize(24);
+
+		$this->fpdf->Cell(0, 10, 'PO Medan Jaya', 0, 1, 'C');
+		$this->fpdf->Image(base_url('assets/images/f794ad52bccba5259868672d8db49de5.png'), 120, 1, 120);
+
+		$this->fpdf->SetFontSize(12);
+		$this->fpdf->Cell(80);
+
+		$this->fpdf->Ln(48);
+	}
+
 	public function bus_print()
 	{
 		$headers = array(
@@ -60,15 +77,7 @@ class Laporan extends CI_Controller
 		$this->fpdf->SetFont('Times', '', 12);
 		$this->fpdf->AddPage();
 
-		$this->fpdf->Image('https://www.graphicsprings.com/filestorage/stencils/f794ad52bccba5259868672d8db49de5.png', 120, 1, 120);
-		// Arial bold 15
-		// $this->fpdf->SetFont('Arial','B',15);
-		// Move to the right
-		$this->fpdf->Cell(80);
-		// Title
-		// $this->fpdf->Cell(30,10,'Title',1,0,'C');
-		// Line break
-		$this->fpdf->Ln(48);
+		$this->header();
 
 		foreach ($headers as $value) {
 		    $this->fpdf->Cell($value['width'], 6, $value['text'], 1, 0, 'C');
@@ -84,6 +93,63 @@ class Laporan extends CI_Controller
 		    $this->fpdf->Cell(26, 6, $value['jumlah_kursi'], 1, 0, 'C');
 		    $this->fpdf->Cell(26, 6, $this->data_bus_loket_model->count_where(array('bus' => $value['id'])), 1, 1, 'C');
 		    $i++;
+		}
+
+		$this->fpdf->Output();
+	}
+
+	public function loket()
+	{
+		$data['page_title'] = 'Daftar Data Loket';
+		$data['loket'] = $this->data_loket_model->list();
+		$this->template->pengguna('laporan/loket', $data);
+	}
+
+	public function loket_print()
+	{
+		$headers = array(
+			array(
+				'text' => 'No',
+				'width' => 10
+			),
+			array(
+				'text' => 'Nama Loket',
+				'width' => 40
+			),
+			array(
+				'text' => 'Jumlah Penumpang Total',
+				'width' => 48
+			),
+			array(
+				'text' => 'Jumlah Bus Total',
+				'width' => 48
+			),
+			array(
+				'text' => 'Jumlah Paket Total',
+				'width' => 48
+			)
+		);
+
+		$this->fpdf->SetTitle('Laporan Data Bus');
+		$this->fpdf->SetFont('Times', '', 12);
+		$this->fpdf->AddPage();
+
+		$this->header();
+
+		foreach ($headers as $value) {
+			$this->fpdf->Cell($value['width'], 6, $value['text'], 1, 0, 'C');
+		}
+
+		$this->fpdf->Ln();
+
+		$i = 1;
+		foreach ($this->data_loket_model->list() as $value) {
+			$this->fpdf->Cell(10, 6, $i, 1, 0, 'C');
+			$this->fpdf->Cell(40, 6, $value['nama_loket'], 1, 0, 'C');
+			$this->fpdf->Cell(48, 6, $this->data_loket_model->jumlah_penumpang_total($value['id']), 1, 0, 'C');
+			$this->fpdf->Cell(48, 6, $this->data_loket_model->jumlah_bus_total($value['id']), 1, 0, 'C');
+			$this->fpdf->Cell(48, 6, $this->data_loket_model->jumlah_paket_total($value['id']), 1, 1, 'C');
+			$i++;
 		}
 
 		$this->fpdf->Output();
@@ -117,23 +183,25 @@ class Laporan extends CI_Controller
 			)
 		);
 
-		$this->fpdf->SetTitle('Laporan Data Bus');
+		$this->fpdf->SetTitle('Laporan Data Print');
 		$this->fpdf->SetFont('Times', '', 12);
 		$this->fpdf->AddPage();
+		
+		$this->header();
 
 		foreach ($headers as $value) {
-		    $this->fpdf->Cell($value['width'], 6, $value['text'], 1, 0, 'C');
+			$this->fpdf->Cell($value['width'], 6, $value['text'], 1, 0, 'C');
 		}
 
 		$this->fpdf->Ln();
 
 		$i = 1;
 		foreach ($this->data_paket_model->list() as $value) {
-		    $this->fpdf->Cell(10, 6, $i, 1, 0, 'C');
-		    $this->fpdf->Cell(60, 6, $this->data_tujuan_model->view($value['tujuan'])['nama_tujuan'], 1, 0, 'C');
-		    $this->fpdf->Cell(60, 6, $value['pengirim'], 1, 0, 'C');
-		    $this->fpdf->Cell(60, 6, $value['penerima'], 1, 1, 'C');
-		    $i++;
+			$this->fpdf->Cell(10, 6, $i, 1, 0, 'C');
+			$this->fpdf->Cell(60, 6, $this->data_tujuan_model->view($value['tujuan'])['nama_tujuan'], 1, 0, 'C');
+			$this->fpdf->Cell(60, 6, $value['pengirim'], 1, 0, 'C');
+			$this->fpdf->Cell(60, 6, $value['penerima'], 1, 1, 'C');
+			$i++;
 		}
 
 		$this->fpdf->Output();
